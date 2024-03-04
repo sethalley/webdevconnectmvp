@@ -1,0 +1,158 @@
+<!--Created by Sawyer Evans, Seth Alley, Jake Nelson, and, last but not least, Adam Kelley
+Most recently updated: Dec 14, 2023
+Section 4, Group 3 | Made for IS 403
+This is a Login page for Students that have accounts. 
+All they need to do is put in their email and password and they can log in. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>WebDevConnect</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="/">WebDevConnect</a></li>
+                <li class="sidebar-nav-item"><a href="/">Home</a></li>
+                <li class="sidebar-nav-item"><a href="studentlogin">Student Login</a></li>
+                <li class="sidebar-nav-item"><a href="generalLogin">Login</a></li>
+                <li class="sidebar-nav-item"><a href="generalRegister">Register</a></li>
+            </ul>
+        </nav>
+        <!--Page Header-->
+        <section class="content-section bg-primary text-white text-center" id="services" style="height:12%;">
+            <div class="container px-4 px-lg-5">
+                <div class="content-section-heading">
+                    <h3 class="text-secondary mb-0">Welcome</h3>
+                    <h2 class="mb-5">Student Login</h2>
+                </div>
+            </div>
+        </section>
+        <!--log in input area-->
+        <div id="loginContent" style="margin-top:10%; text-align:center; ">
+            <div>
+                <h1 style="text-align:center;">Login</h1>
+                <form action="/studlogin" method="GET">
+                    <label for="email" style="text-align:left;">Email:</label>
+                    <input type="text" id="email" name="email" autofocus>
+                    <br>
+                    <br>
+                    <label for="password" style="text-align:left;">Password:</label>
+                    <input type="password" id="password" name="password">
+                    <br>
+                    <div id="button">
+                        <button type="submit" class="button-23">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <p class="text-muted small mb-0">Copyright &copy; WebDevConnect 2023   |   <a href=privacy>Privacy Policy</a></p>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>
+    </body>
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+
+const sidebarWrapper = document.getElementById('sidebar-wrapper');
+let scrollToTopVisible = false;
+// Closes the sidebar menu
+const menuToggle = document.body.querySelector('.menu-toggle');
+menuToggle.addEventListener('click', event => {
+    event.preventDefault();
+    sidebarWrapper.classList.toggle('active');
+    _toggleMenuIcon();
+    menuToggle.classList.toggle('active');
+})
+
+// Closes responsive menu when a scroll trigger link is clicked
+var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
+scrollTriggerList.map(scrollTrigger => {
+    scrollTrigger.addEventListener('click', () => {
+        sidebarWrapper.classList.remove('active');
+        menuToggle.classList.remove('active');
+        _toggleMenuIcon();
+    })
+});
+
+function _toggleMenuIcon() {
+    const menuToggleBars = document.body.querySelector('.menu-toggle > .fa-bars');
+    const menuToggleTimes = document.body.querySelector('.menu-toggle > .fa-xmark');
+    if (menuToggleBars) {
+        menuToggleBars.classList.remove('fa-bars');
+        menuToggleBars.classList.add('fa-xmark');
+    }
+    if (menuToggleTimes) {
+        menuToggleTimes.classList.remove('fa-xmark');
+        menuToggleTimes.classList.add('fa-bars');
+    }
+}
+
+// Scroll to top button appear
+document.addEventListener('scroll', () => {
+    const scrollToTop = document.body.querySelector('.scroll-to-top');
+    if (document.documentElement.scrollTop > 100) {
+        if (!scrollToTopVisible) {
+            fadeIn(scrollToTop);
+            scrollToTopVisible = true;
+        }
+    } else {
+        if (scrollToTopVisible) {
+            fadeOut(scrollToTop);
+            scrollToTopVisible = false;
+        }
+    }
+})
+})
+
+function fadeOut(el) {
+el.style.opacity = 1;
+(function fade() {
+    if ((el.style.opacity -= .1) < 0) {
+        el.style.display = "none";
+    } else {
+        requestAnimationFrame(fade);
+    }
+})();
+};
+
+function fadeIn(el, display) {
+el.style.opacity = 0;
+el.style.display = display || "block";
+(function fade() {
+    var val = parseFloat(el.style.opacity);
+    if (!((val += .1) > 1)) {
+        el.style.opacity = val;
+        requestAnimationFrame(fade);
+    }
+})();
+};
+    </script>
+</html>
